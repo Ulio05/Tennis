@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 
 public class TennisGame2 implements TennisGame
 {
@@ -16,7 +17,7 @@ public class TennisGame2 implements TennisGame
 
     public String getScore(){
         String score = "";
-        if (P1point == P2point && P1point < 4)
+        if (P1point == P2point)
         {
             if (P1point==0)
                 score = "Love";
@@ -25,9 +26,9 @@ public class TennisGame2 implements TennisGame
             if (P1point==2)
                 score = "Thirty";
             score += "-All";
+            if(P1point>=3)
+                score = "Deuce";
         }
-        if (P1point==P2point && P1point>=3)
-            score = "Deuce";
         
         if (P1point > 0 && P2point==0)
         {
@@ -102,34 +103,19 @@ public class TennisGame2 implements TennisGame
     
     public void SetP1Score(int number){
         
-        for (int i = 0; i < number; i++)
-        {
-            P1Score();
-        }
+        P1point = number;
             
     }
     
     public void SetP2Score(int number){
         
-        for (int i = 0; i < number; i++)
-        {
-            P2Score();
-        }
+        P2point = number;
             
     }
-    
-    public void P1Score(){
-        P1point++;
-    }
-    
-    public void P2Score(){
-        P2point++;
-    }
-
     public void wonPoint(String player) {
         if (player == "player1")
-            P1Score();
+            this.SetP1Score(this.P1point+1);
         else
-            P2Score();
+            this.SetP2Score(this.P2point+1);
     }
 }
